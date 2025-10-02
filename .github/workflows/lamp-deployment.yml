@@ -7,20 +7,19 @@ on:
       - main
 
 jobs:
-  linting:
-    name: Lint Ansible files
-    runs-on: ubuntu-latest
+  build:
+    name: Ansible Lint # Naming the build is important to use it as a status check
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run ansible-lint
+        uses: ansible/ansible-lint@main # or vX.X.X version
+        # optional (see below):
+        with:
+          targets: |
+            ansible/playbook.yml
+            ansible/inventory.yml
 
-    steps: 
-    - name: Checkout sources
-      uses: actions/checkout@v2
-    - name: Linting
-      uses: ansible/ansible-lint-action@c37fb7b4bda2c8cb18f4942716bae9f11b0dc9bc
-      with:
-        targets: |
-          ansible/playbook.yml
-          ansible/inventory.yml
-
-        args: "-c ansible/.ansible-lint"
+          args: "-c ansible/.ansible-lint"
 
       
