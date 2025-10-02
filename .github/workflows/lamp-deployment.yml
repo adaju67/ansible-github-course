@@ -16,10 +16,6 @@ jobs:
         uses: ansible/ansible-lint@main # or vX.X.X version
         # optional (see below):
         with:
-          targets: |
-            ansible/playbook.yml
-            ansible/inventory.yml
-
-          args: "-c ansible/.ansible-lint"
+          args: "ansible/playbook.yml ansible/inventory.yml"
 
       
